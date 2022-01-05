@@ -1,0 +1,17 @@
+{
+  "name": "@highcharts-super/shared",
+  "version": "1.0.0",
+  "main": "index.js",
+  "module": "dist/shared.esm-bundler.js",
+  "buildOptions": {
+    "name":"HighchartsSuperShared",
+    "formats":[
+      "cjs",
+      "esm-bundler"
+    ]
+  },
+  "dependencies": {
+    "highcharts": "^9.3.2"
+  },
+  "license": "MIT"
+}

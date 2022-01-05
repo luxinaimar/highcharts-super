@@ -1,0 +1,19 @@
+{
+  "name": "highcharts-super",
+  "version": "1.0.0",
+  "main": "index.js",
+  "module": "dist/highcharts.super.runtime.esm-bundler.js",
+  "buildOptions": {
+    "name":"HighchartsSuper",
+    "formats":[
+      "cjs",
+      "esm-bundler",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@highcharts-super/chart": "^1.0.0",
+    "@highcharts-super/shared": "^1.0.0"
+  },
+  "license": "MIT"
+}

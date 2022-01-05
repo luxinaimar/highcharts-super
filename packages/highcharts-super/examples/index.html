@@ -1,0 +1,82 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-25 21:36:05
+ * @LastEditTime: 2022-01-05 16:33:13
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /highcharts-super/packages/highcharts-super/examples/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="container2"></div>
+</body>
+<script src="../dist/highcharts-super.global.js"></script>
+<script>function getData(n) {
+	var arr = [],
+		i,
+		a,
+		b,
+		c,
+		spike;
+	for (i = 0; i < n; i = i + 1) {
+		if (i % 100 === 0) {
+			a = 2 * Math.random();
+		}
+		if (i % 1000 === 0) {
+			b = 2 * Math.random();
+		}
+		if (i % 10000 === 0) {
+			c = 2 * Math.random();
+		}
+		if (i % 50000 === 0) {
+			spike = 10;
+		} else {
+			spike = 0;
+		}
+		arr.push([
+			i,
+			2 * Math.sin(i / 100) + a + b + c + spike + Math.random()
+		]);
+	}
+	return arr;
+}
+    var n = 50000,
+	data = getData(n);
+    const option = {
+        title: {
+        text: 'Highcharts drawing points',
+        },
+        subtitle: {
+        text: 'Using the Boost module',
+        },
+        tooltip: {
+        valueDecimals: 2,
+        },
+    };
+
+  const chartOption = {
+    chart: {
+      zoomType: 'x',
+      // panning: true,
+      panKey: 'shift',
+    },
+    series: [{
+      data,
+      lineWidth: 0.5,
+    }],
+  };
+    let {HighchartsWrap, ChartFlags} = HighchartsSuper;     
+    const hcSuper = new HighchartsWrap(ChartFlags.LINE, option);
+    const hcSuper2 = new HighchartsWrap(ChartFlags.AREA, option);
+    hcSuper.draw('container', chartOption);
+    hcSuper2.draw('container2', chartOption);
+</script>
+</html>
