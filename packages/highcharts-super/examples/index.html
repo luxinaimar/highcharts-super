@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-25 21:36:05
- * @LastEditTime: 2022-01-05 16:33:13
+ * @LastEditTime: 2022-01-05 19:41:00
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /highcharts-super/packages/highcharts-super/examples/index.html
@@ -14,9 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <div id="container"></div>
-    <div id="container2"></div>
+<body style="width: 100%;">
+    <div id="container" style="width: 33%; float: left;"></div>
+    <div id="container2" style="width: 33%; float: left;"></div>
+    <div id="container3" style="width: 33%; float: left;"></div>
 </body>
 <script src="../dist/highcharts-super.global.js"></script>
 <script>function getData(n) {
@@ -50,33 +51,68 @@
 }
     var n = 50000,
 	data = getData(n);
-    const option = {
+    const lineOption = {
         title: {
-        text: 'Highcharts drawing points',
+            text: 'Highcharts line',
         },
         subtitle: {
-        text: 'Using the Boost module',
+                text: 'line test',
         },
         tooltip: {
         valueDecimals: 2,
         },
     };
-
-  const chartOption = {
-    chart: {
-      zoomType: 'x',
-      // panning: true,
-      panKey: 'shift',
-    },
-    series: [{
-      data,
-      lineWidth: 0.5,
-    }],
-  };
+    const chartOption = {
+        chart: {
+        zoomType: 'x',
+        // panning: true,
+        panKey: 'shift',
+        },
+        series: [{
+        data,
+        lineWidth: 0.5,
+        }],
+    };
     let {HighchartsWrap, ChartFlags} = HighchartsSuper;     
-    const hcSuper = new HighchartsWrap(ChartFlags.LINE, option);
-    const hcSuper2 = new HighchartsWrap(ChartFlags.AREA, option);
+    const hcSuper = new HighchartsWrap(ChartFlags.LINE, lineOption);
     hcSuper.draw('container', chartOption);
+    const areaOption = {
+        title: {
+            text: 'Highcharts area',
+        },
+        subtitle: {
+                text: 'area test',
+        },
+        tooltip: {
+        valueDecimals: 2,
+        },
+    };
+    const hcSuper2 = new HighchartsWrap(ChartFlags.AREA, areaOption);
     hcSuper2.draw('container2', chartOption);
+    class HighchartsClickWrap extends HighchartsWrap{
+        onClick(event) {
+            alert(
+                'Alt: ' + event.altKey + '\n' +
+                'Control: ' + event.ctrlKey + '\n' +
+                'Meta: ' + event.metaKey + '\n' +
+                'Shift: ' + event.shiftKey
+            );
+        }
+    }
+    const clickOption = {
+        title: {
+            text: 'Highcharts click test',
+        },
+        xAxis: {
+		    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	    },
+    }
+    const clickChartOption = {
+        series: [{
+		    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	    }]
+    };
+    const hcSuper3 = new HighchartsClickWrap(ChartFlags.LINE, clickOption);
+    hcSuper3.draw('container3', clickChartOption);
 </script>
 </html>

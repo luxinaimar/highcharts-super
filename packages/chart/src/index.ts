@@ -10,4 +10,5 @@ export {
 export {
   commonOptions,
   freeChartOptions,
+  OnClickListener,
 } from './models';

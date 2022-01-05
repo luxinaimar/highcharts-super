@@ -1,5 +1,5 @@
 import {
-  Line, Area, Chart, commonOptions, freeChartOptions,
+  Line, Area, Chart, commonOptions, freeChartOptions, OnClickListener,
 } from '@highcharts-super/chart';
 import { ChartFlags } from '@highcharts-super/shared';
 
@@ -11,7 +11,15 @@ export class HighchartsSuper {
   }
 
   public draw(renderTo: (string|HTMLElement), chartOptions: freeChartOptions) {
+    const clickListrner:OnClickListener = {
+      click: this.onClick,
+    };
+    this.chart.setOnClickListener(clickListrner);
     this.chart.draw(renderTo, chartOptions);
+  }
+
+  protected onClick(event):void {
+    console.log('click', event);
   }
 }
 

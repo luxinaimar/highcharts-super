@@ -14,9 +14,15 @@ export interface commonOptions {
 export interface chartOptions {
   chart?: Highcharts.ChartOptions,
   series?: Highcharts.SeriesOptionsType[],
+  plotOptions?: Highcharts.PlotOptions
 }
 
 export interface freeChartOptions {
   chart?: Highcharts.ChartOptions,
   series?: Partial<Highcharts.SeriesOptionsType>[],
+}
+
+export interface OnClickListener {
+  // eslint-disable-next-line no-unused-vars
+  click(event: any):void
 }
